@@ -16,7 +16,7 @@
     
    
     
-    attributes.size = CGSizeMake(320 ,400);
+    attributes.size = CGSizeMake(320 ,600);
     
     
     if(self.selectedCellCoordinates.row == path.row)

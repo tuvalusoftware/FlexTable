@@ -23,7 +23,7 @@
     
   
     
-    attributes.size = CGSizeMake(320 ,400);
+    attributes.size = CGSizeMake(320 ,600);
     attributes.zIndex =    path.row;
     attributes.center = CGPointMake(320/2, path.row* 80+203);
     

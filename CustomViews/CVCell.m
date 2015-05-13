@@ -16,23 +16,32 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
+    
     if (self) {
         
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        // Initialization code
+        // load the nib CVCell
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"CVCell" owner:self options:nil];
         
+        
+        // check there is at least one view.
         if ([arrayOfViews count] < 1) {
             return nil;
         }
         
+        
+        // check the view at index 0 is indeed an instance of UICollectionViewCell
         if (![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]]) {
             return nil;
         }
         
+        // set self to be and instance of the object returned from nib
         self = [arrayOfViews objectAtIndex:0];
         
+        
+          // create a round rect background group.
           PNCollectionCellBackgroundView* backgroundView = [[PNCollectionCellBackgroundView alloc] initWithFrame:frame];
         
         self.backgroundView=backgroundView;
@@ -42,6 +51,8 @@
     return self;
     
 }
+
+
 
 -(void) applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {

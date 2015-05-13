@@ -1,8 +1,4 @@
-//
-//  PNCollectionCellBackgroundView.m
-//
-//  Created by Jay Slupesky on 10/3/12.
-//
+
 
 #import "PNCollectionCellBackgroundView.h"
 
@@ -15,6 +11,12 @@
         // Initialization code
     }
     return self;
+}
+- (void)viewDidLoad
+{
+    self.backgroundColor = [UIColor redColor];
+    
+    
 }
 
 void addRoundedRect(CGContextRef ctx, CGRect rect, float cornerRadius) {
@@ -53,6 +55,8 @@ void addRoundedRect(CGContextRef ctx, CGRect rect, float cornerRadius) {
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    
+  
     CGColorRef cgColorWhite = [UIColor whiteColor].CGColor;
 
     UIColor* color235Gray = [UIColor colorWithRed:235.0/255.0
@@ -83,7 +87,7 @@ void addRoundedRect(CGContextRef ctx, CGRect rect, float cornerRadius) {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     // fill all with white
-    CGContextSetFillColorWithColor(context,cgColorWhite);
+     CGContextSetFillColorWithColor(context,cgColorWhite);
     CGContextFillRect(context,self.bounds);
 
     CGContextSetLineWidth(context,5.0);
@@ -129,27 +133,55 @@ void addRoundedRect(CGContextRef ctx, CGRect rect, float cornerRadius) {
     CGContextMoveToPoint(context,0.0,self.bounds.size.height - 0.0);
     CGContextAddLineToPoint(context,self.bounds.size.width,self.bounds.size.height - 0.0);
     
+    
     CGContextStrokePath(context);
     
    [self drawRectWithRect:rect];
 
 }
 
+-(void) drawClearRect:(CGRect) rect
+{
+    CGContextRef aRef = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(aRef);
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:rect];
+    [bezierPath setLineWidth:4.0f];
+    [[UIColor yellowColor] setStroke];
+    
+    // this draws  background (white color)  color
+    [[UIColor whiteColor] setFill];
+    [bezierPath fill];
+    CGContextRestoreGState(aRef);
+    
+}
+
 - (void)drawRectWithRect:(CGRect)rect
 {
+    
+    [self drawClearRect:rect];
     // draw a rounded rect bezier path filled with blue
     CGContextRef aRef = UIGraphicsGetCurrentContext();
     CGContextSaveGState(aRef);
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15.4f];
     [bezierPath setLineWidth:4.0f];
-    [[UIColor lightGrayColor] setStroke];
+    // NB adding blue color
+    UIColor* color = [UIColor colorWithRed:54.0f/255.0f
+                                     green:205.0f/255.0f
+                                      blue:253.0f/255.0f
+                                     alpha:1];
     
-    UIColor *fillColor = [UIColor colorWithRed:0.529 green:0.808 blue:0.922 alpha:1]; // color equivalent is #87ceeb
-    [fillColor setFill];
+    [color setStroke];
     
-    [bezierPath stroke];
-    //[bezierPath fill];
+    
+   // //NB
+   UIColor *fillColor = [UIColor yellowColor];//[UIColor colorWithRed:0.529 green:0.808 blue:0.922 alpha:1]; // color equivalent is #87ceeb
+   [fillColor setFill];
+   [bezierPath stroke];
+ 
     CGContextRestoreGState(aRef);
+    
+    
+    
 }
 
 

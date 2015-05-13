@@ -117,7 +117,7 @@
         layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
     
     layoutAttributes.alpha = 1.0;
-     layoutAttributes.size = CGSizeMake(320 ,400);
+     layoutAttributes.size = CGSizeMake(320 ,600);
      layoutAttributes.zIndex =    indexPath.row;
     
      layoutAttributes.center = CGPointMake(320/2, indexPath.row* 50);

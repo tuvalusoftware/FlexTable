@@ -21,13 +21,7 @@
     _cellCount = [[self collectionView] numberOfItemsInSection:0];
     _center = CGPointMake(size.width / 2.0, size.height / 2.0);
     _radius = MIN(size.width, size.height) / 2.5;
-    
-    
-    
-    
-   
-    
-    
+
     CGSize contentSize = self.collectionView.contentSize;
     NSArray *items = [super layoutAttributesForElementsInRect:
                       CGRectMake(0.0f, 0.0f, contentSize.width, contentSize.height)];
@@ -84,7 +78,7 @@
 
 
 
-
+//
 -(UICollectionViewLayoutAttributes*) layoutAttributesForItemAtIndexPath:(NSIndexPath *)path
 {
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:path];
@@ -96,7 +90,6 @@
     
      if(self.collectionView.contentOffset.y <0 )
      {
-         
          offset =-self.collectionView.contentOffset.y;
      }
     
@@ -105,7 +98,8 @@
     
      attributes.alpha = 1;
     
-     attributes.size = CGSizeMake(320 ,400);
+    /* changes the size of the cell. but not to full value*/
+     attributes.size = CGSizeMake(320 ,600);
      attributes.zIndex =    path.row;
     
    // NSLog(@"offset %f", offset );
